@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Universal Floral | Bringing Your Office to Life</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<!-- Bootstrap CSS -->
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+<!-- Google Font CSS -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap" rel="stylesheet">
+<!-- Gallery CSS -->
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<!-- Animation CSS -->
+<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<!-- Font Awesome Kit -->
+<script src="https://kit.fontawesome.com/a302a0f2bd.js" crossorigin="anonymous"></script>
+<!-- Custom CSS -->
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  {% 
+    set nav_bar = [
+      ('/', 'index', 'Home'),
+      ('/about/', 'about', 'About'),
+      ('/how-we-work/', 'how-we-work', 'How we work'),
+      ('/what-we-do/', 'what-we-do', 'What we do'),
+      ('/clients/', 'clients', 'Clients'),
+      ('/contact/', 'contact', 'Contact')
+    ]
+  -%}
+  {% set active_page = active_page|default('index') -%}
+
+  <!-- Start Navigation -->
+  <div class="menu-center" id="navbar">
+    <div class="container d-none d-lg-block d-xl-block">
+      <div class="row">
+        <div class="col-4">
+          <div class="h-phone">
+            <i class="fas fa-mobile-alt"></i> &nbsp;<a href="tel:0345 505 3333">0345 505 3333</a>
+          </div>
+        </div>
+        <div class="col-4 text-center">
+          <div class="h-logo">
+            <a class="navbar-brand" href="/">
+              <img src="{{ url_for('static', filename='img/universal-floral-office-plants-rental.png') }}" alt="Logo">
+            </a>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="h-social text-right">
+            <a href="https://www.facebook.com/UniversalFloral/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="/" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/universalfloral/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            <a href="https://www.linkedin.com/company/universal-floral-display/?originalSubdomain=es" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>	
+    </div>
+    <nav class="navbar navbar-light navbar-expand-lg">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mymenu">
+        <span class="navbar-toggler-icon">&nbsp;</span>
+      </button>
+      <a class="navbar-brand d-block d-lg-none d-xl-none" href="/">
+        <img src="{{ url_for('static', filename='img/universal-floral-office-plants-rental.png') }}" alt="Logo">
+      </a>
+      <div class="collapse navbar-collapse" id="mymenu">
+        <ul class="navbar-nav m-auto">
+          {% for href, id, caption in nav_bar %}
+          <li class="nav-item {% if id == active_page %} active {% endif %}">
+            <a class="nav-link" href="{{ href|e }}">{{ caption|e }}</a>
+          </li>
+          {% endfor %}
+          <li class="nav-item d-block d-lg-none d-xl-none">
+            <div class="h-phone"><i class="fas fa-mobile-alt"></i> &nbsp;
+              <a href="tel:0345 505 3333">0345 505 3333</a>
+            </div>
+          </li>
+          <li class="nav-item d-block d-lg-none d-xl-none">
+            <div class="h-social">
+              <a href="#" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+              <a href="#" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+              <a href="#" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+              <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </li>        
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <!-- End Navigation --> 
+
+	{% block body %} {% endblock %}
+
+	<!-- Start Footer -->
+	<div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-4"></div>
+        <div class="col-12 col-lg-4 mb-lg-0 mb-3">
+					<img src="{{ url_for('static', filename='img/universal-floral-office-plants-rental.png') }}" alt="Logo">
+				</div>
+        <div class="col-12 col-lg-4"> <a href="#" class="foot-link">Privacy | Terms</a> </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Footer --> 
+
+<!-- External JS libraries --> 
+<script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script> 
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
